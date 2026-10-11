@@ -3,7 +3,6 @@ package com.hospitalvidasalud.mscita.controller;
 import com.hospitalvidasalud.mscita.dto.PacienteDTO;
 import com.hospitalvidasalud.mscita.entity.Cita;
 import com.hospitalvidasalud.mscita.repository.CitaRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,11 +15,16 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1/citas")
-@RequiredArgsConstructor
 public class CitaController {
 
     private final CitaRepository citaRepository;
     private final WebClient.Builder webClientBuilder;
+
+    public CitaController(CitaRepository citaRepository,
+                          WebClient.Builder webClientBuilder) {
+        this.citaRepository = citaRepository;
+        this.webClientBuilder = webClientBuilder;
+    }
 
     @PostMapping
     public Mono<ResponseEntity<Cita>> registrar(@RequestBody Cita cita) {

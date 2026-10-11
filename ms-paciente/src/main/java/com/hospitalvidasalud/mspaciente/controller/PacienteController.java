@@ -2,7 +2,6 @@ package com.hospitalvidasalud.mspaciente.controller;
 
 import com.hospitalvidasalud.mspaciente.entity.Paciente;
 import com.hospitalvidasalud.mspaciente.repository.PacienteRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +15,13 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/v1/pacientes")
-@RequiredArgsConstructor
 public class PacienteController {
 
     private final PacienteRepository pacienteRepository;
+
+    public PacienteController(PacienteRepository pacienteRepository) {
+        this.pacienteRepository = pacienteRepository;
+    }
 
     @GetMapping("/{id}")
     public Mono<Paciente> obtenerPorId(@PathVariable Long id) {
