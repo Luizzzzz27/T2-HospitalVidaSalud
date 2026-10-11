@@ -5,6 +5,9 @@ spring:
     url: r2dbc:mysql://localhost:3306/db_cita
     username: root
     password: Laga_1127
+  rabbitmq:
+    host: localhost
+    port: 5672
 
 server:
   port: 8082
