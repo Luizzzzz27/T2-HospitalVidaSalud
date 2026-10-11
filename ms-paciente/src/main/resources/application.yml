@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ms-paciente
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/db_paciente
+    username: root
+    password: Laga_1127
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

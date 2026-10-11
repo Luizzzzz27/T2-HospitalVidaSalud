@@ -32,3 +32,4 @@ Thumbs.db
 
 # Logs de ejecucion de esta automatizacion
 .run-logs/
+/.metadata/

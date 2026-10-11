@@ -1,0 +1,4 @@
+CREATE DATABASE db_paciente;
+CREATE DATABASE db_cita;
+CREATE DATABASE db_atencion;
+CREATE DATABASE db_pago;

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: ms-api-gateway
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: route-paciente
+              uri: lb://ms-paciente
+              predicates:
+                - Path=/api/v1/pacientes,/api/v1/pacientes/**
+            - id: route-cita
+              uri: lb://ms-cita
+              predicates:
+                - Path=/api/v1/citas,/api/v1/citas/**
+            - id: route-atencion
+              uri: lb://ms-atencion
+              predicates:
+                - Path=/api/v1/atenciones,/api/v1/atenciones/**
+            - id: route-pago
+              uri: lb://ms-pago
+              predicates:
+                - Path=/api/v1/pagos,/api/v1/pagos/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
