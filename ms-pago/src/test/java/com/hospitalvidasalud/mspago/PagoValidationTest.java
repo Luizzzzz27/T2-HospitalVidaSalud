@@ -42,7 +42,8 @@ class PagoValidationTest {
 
         StepVerifier.create(pagoController.registrar(request))
                 .assertNext(respuesta -> {
-                    assertEquals(HttpStatus.CREATED, respuesta.getStatusCode());
+                    // Fallo controlado para demostrar que el pipeline bloquea una regresion.
+                    assertEquals(HttpStatus.OK, respuesta.getStatusCode());
                     assertNotNull(respuesta.getBody());
                     assertEquals(new BigDecimal("125.50"), respuesta.getBody().getMonto());
                     assertEquals("COMPLETADO", respuesta.getBody().getEstado());
