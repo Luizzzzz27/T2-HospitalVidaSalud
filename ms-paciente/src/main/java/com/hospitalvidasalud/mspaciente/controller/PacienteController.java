@@ -32,6 +32,12 @@ public class PacienteController {
 
     @PostMapping
     public Mono<ResponseEntity<Paciente>> registrar(@RequestBody Paciente paciente) {
+        if (paciente.getNumeroDocumento() == null
+                || paciente.getNumeroDocumento().isBlank()) {
+            return Mono.error(new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Numero de documento obligatorio"));
+        }
+
         return pacienteRepository.existsByNumeroDocumento(paciente.getNumeroDocumento())
                 .flatMap(existe -> {
                     if (existe) {

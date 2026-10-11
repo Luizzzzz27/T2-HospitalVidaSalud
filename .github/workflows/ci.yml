@@ -1,0 +1,32 @@
+name: CI Microservicios
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Compilar y Probar Microservicios
+        run: |
+          mvn -B clean test -f ms-eureka-server/pom.xml
+          mvn -B clean test -f ms-api-gateway/pom.xml
+          mvn -B clean test -f ms-paciente/pom.xml
+          mvn -B clean test -f ms-cita/pom.xml
+          mvn -B clean test -f ms-atencion/pom.xml
+          mvn -B clean test -f ms-pago/pom.xml
+          mvn -B clean test -f ms-notificacion/pom.xml
